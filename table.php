@@ -9,6 +9,11 @@
 			deleteCar($_GET["delete"]);
 	}
 	
+	//salvestan andmebaasi uuendused
+	if(isset($_POST["save"])){
+		updateCar($_POST["id"], $_POST["plate_number"], $_POST["color"]);
+	}
+	
 	//käivitan funktsiooni
 	$array_of_cars = getCarData();
 	
@@ -39,6 +44,8 @@
 			if(isset($_GET["edit"]) && $array_of_cars[$i]->id == $_GET["edit"]){
 				
 			echo "<tr>";
+				echo "<form action='table.php' method='post'>";
+				echo "<input type='hidden' name='id' value='".."'>";
 				echo "<td>".$array_of_cars[$i]->id."</td>";
 				echo "<td>".$array_of_cars[$i]->user_id."</td>";
 				echo "<td><input name='plate_number' value='".$array_of_cars[$i]->plate."'></td>";
